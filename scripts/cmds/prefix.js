@@ -8,17 +8,10 @@ module.exports = {
 		author: "NTKhang",
 		countDown: 5,
 		role: 0,
-		shortDescription: "Thay đổi prefix của bot",
-		longDescription: "Thay đổi dấu lệnh của bot trong box chat của bạn hoặc cả hệ thống bot (chỉ admin bot)",
+		shortDescription: "Changes the bot's prefix",
+		longDescription: "Change the command sign of the bot in your chat box or the entire bot system (bot admin only)",
 		category: "config",
 		guide: {
-			vi: "   {pn} <new prefix>: thay đổi prefix mới trong box chat của bạn"
-				+ "\n   Ví dụ:"
-				+ "\n    {pn} #"
-				+ "\n\n   {pn} <new prefix> -g: thay đổi prefix mới trong hệ thống bot (chỉ admin bot)"
-				+ "\n   Ví dụ:"
-				+ "\n    {pn} # -g"
-				+ "\n\n   {pn} reset: thay đổi prefix trong box chat của bạn về mặc định",
 			en: "   {pn} <new prefix>: change new prefix in your box chat"
 				+ "\n   Example:"
 				+ "\n    {pn} #"
@@ -30,15 +23,6 @@ module.exports = {
 	},
 
 	langs: {
-		vi: {
-			reset: "Đã reset prefix của bạn về mặc định: %1",
-			onlyAdmin: "Chỉ admin mới có thể thay đổi prefix hệ thống bot",
-			confirmGlobal: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix của toàn bộ hệ thống bot",
-			confirmThisThread: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix trong nhóm chat của bạn",
-			successGlobal: "Đã thay đổi prefix hệ thống bot thành: %1",
-			successThisThread: "Đã thay đổi prefix trong nhóm chat của bạn thành: %1",
-			myPrefix: "🌐 Prefix của hệ thống: %1\n🛸 Prefix của nhóm bạn: %2"
-		},
 		en: {
 			reset: "Your prefix has been reset to default: %1",
 			onlyAdmin: "Only admin can change prefix of system bot",
@@ -46,7 +30,7 @@ module.exports = {
 			confirmThisThread: "Please react to this message to confirm change prefix in your box chat",
 			successGlobal: "Changed prefix of system bot to: %1",
 			successThisThread: "Changed prefix in your box chat to: %1",
-			myPrefix: "🌐 System prefix: %1\n🛸 Your box chat prefix: %2"
+			myPrefix: "🌐 System Prefix: %1\n🛸 Your box chat Prefix: %2"
 		}
 	},
 

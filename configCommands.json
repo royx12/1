@@ -1,32 +1,96 @@
 {
-	"commandBanned": {},
-	"envGlobal": {
-		"weatherApiKey": "d7e795ae6a0d44aaa8abb1a0a7ac19e4",
-		"goatbotApikey": ""
-	},
-	"envCommands": {
-		"daily": {
-			"rewardDay1": {
-				"coin": 100,
-				"exp": 10
-			}
-		},
-		"notification": {
-			"delayPerGroup": 250
-		},
-		"rank": {
-			"deltaNext": 5
-		},
-		"rankup": {
-			"deltaNext": 5
-		},
-		"appstore": {
-			"limitResult": 3
-		}
-	},
-	"envEvents": {
-		"logsbot": {
-			"allow": true
-		}
-	}
+  "commandBanned": {},
+  "envGlobal": {
+    "weatherApiKey": "d7e795ae6a0d44aaa8abb1a0a7ac19e4",
+    "goatbotApikey": ""
+  },
+  "envCommands": {
+    "daily": {
+      "rewardFirstDay": {
+        "coin": 100,
+        "exp": 10
+      }
+    },
+    "notification": {
+      "delayPerGroup": 250
+    },
+    "rank": {
+      "deltaNext": 5
+    },
+    "rankup": {
+      "deltaNext": 5
+    },
+    "appstore": {
+      "limitResult": 3
+    },
+    "dhbc": {
+      "reward": 1000
+    },
+    "qr": {},
+    "quiz": {
+      "reward": 0
+    },
+    "notice": {
+      "delayPerGroup": 250
+    },
+    "spellingbee": {
+      "reward": 30
+    },
+    "antiout": {
+      "deltaNext": 5
+    },
+    "work2": {
+      "cooldownTime": 600000
+    }
+  },
+  "envEvents": {
+    "logsbot": {
+      "allow": true
+    }
+  },
+  "commandUnload": [
+    "hentai2.js",
+    "lyrics2.js",
+    "motivate.js",
+    "dhbc.js",
+    "tik.js",
+    "bankinstaller.js",
+    "appstore.js",
+    "supportgc.js",
+    "videofb.js",
+    "badwords.js",
+    "opm2023.js",
+    "hentai.js",
+    "hentaivid.js",
+    "undefined.js",
+    "anya.js",
+    "sim2.js",
+    "ReplitAI.js",
+    "jsontomongodb.js",
+    "jsontosqlite.js",
+    "dare.js",
+    "confessv2.js",
+    "redroom.js",
+    "chesca.js",
+    "ntfy.js",
+    "listbox2.js",
+    "Tempmail.js",
+    "fbshare.js",
+    "token.js",
+    "fbget.js",
+    "spamfollowers.js",
+    "spamlikes.js",
+    "offbot.js",
+    "animefy.js",
+    "codm.js",
+    "messageallusers.js",
+    "catchpastebin.js",
+    "RexAI.js",
+    "autosetbio.js",
+    "Fbtoken.js",
+    "facebookfollowers.js",
+    "clear.js",
+    "groupinfo.js",
+    "TruthorDare.js"
+  ]
 }

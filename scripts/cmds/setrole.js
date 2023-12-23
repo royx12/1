@@ -13,7 +13,7 @@ module.exports = {
 			vi: "Chỉnh sửa role của lệnh (những lệnh có role < 2)",
 			en: "Edit role of command (commands with role < 2)"
 		},
-		category: "info",
+		category: "OWNER",
 		guide: {
 			vi: "   {pn} <commandName> <new role>: set role mới cho lệnh"
 				+ "\n   Với:"
@@ -47,7 +47,7 @@ module.exports = {
 	langs: {
 		vi: {
 			noEditedCommand: "✅ Hiện tại nhóm bạn không có lệnh nào được chỉnh sửa role",
-			editedCommand: "⚠️ Những lệnh trong nhóm bạn đã chỉnh sửa role:\n",
+			editedCommand: "⚠ Những lệnh trong nhóm bạn đã chỉnh sửa role:\n",
 			noPermission: "❗ Chỉ có quản trị viên mới có thể thực hiện lệnh này",
 			commandNotFound: "Không tìm thấy lệnh \"%1\"",
 			noChangeRole: "❗ Không thể thay đổi role của lệnh \"%1\"",
@@ -56,7 +56,7 @@ module.exports = {
 		},
 		en: {
 			noEditedCommand: "✅ Your group has no edited command",
-			editedCommand: "⚠️ Your group has edited commands:\n",
+			editedCommand: "⚠ Your group has edited commands:\n",
 			noPermission: "❗ Only admin can use this command",
 			commandNotFound: "Command \"%1\" not found",
 			noChangeRole: "❗ Can't change role of command \"%1\"",

@@ -15,7 +15,7 @@ module.exports = {
 			vi: "Nhận quà hàng ngày",
 			en: "Receive daily gift"
 		},
-		category: "game",
+		category: "fun",
 		guide: {
 			vi: "   {pn}: Nhận quà hàng ngày"
 				+ "\n   {pn} info: Xem thông tin quà hàng ngày",
@@ -55,7 +55,7 @@ module.exports = {
 		}
 	},
 
-	onStart: async function ({ args, message, event, envCommands, usersData, commandName, getLang }) {
+	onChat: async function ({ args, message, event, envCommands, usersData, commandName, getLang }) {
 		const reward = envCommands[commandName].rewardFirstDay;
 		if (args[0] == "info") {
 			let msg = "";
