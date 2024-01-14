@@ -7,7 +7,7 @@ module.exports = {
   config: {
     name: "ai",
     version: 1.0,
-    author: "Eldwin x Sadipapi", //Modified by Eldwin
+    author: "Eldwin x Sandipapi", 
     role: 0,
     longDescription: "AI",
     category: "ai",
@@ -60,4 +60,4 @@ async function getGPTResponse(prompt) {
 
   const response = await axios.get(`${GPT_API_URL}?prompt=${encodeURIComponent(prompt)}`);
   return response.data.answer;
-}
+        }
