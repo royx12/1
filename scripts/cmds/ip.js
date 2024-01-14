@@ -24,9 +24,9 @@ module.exports = {
   
   onStart: async function ({ api, args, event, __GLOBAL }) {
   // Admin Info
-  const adminName = "Ace Gerome🧸🇵🇭";
-  const adminUID = "100085947075503";
-  const adminLink = "www.facebook.com/ace.gerome";
+  const adminName = "Eldwin Cabanilla";
+  const adminUID = "100025136351262";
+  const adminLink = "www.facebook.com/eldwincabanilla2";
 
   // Check if an IP address is provided
   if (!args[0]) {
