@@ -2,14 +2,14 @@ const axios = require('axios');
 
 module.exports = {
   config: {
-    name: "CatGPT",
+    name: "gpt",
     version: "1.0.0",
     role: 0,
-    author: "Ace",
+    author: "Eldwin | Unknown",
     credits: "minn",
     shortDescription: "Chat with CatGPT", 
     longDescription: "Chat with CatGPT",
-    category: "ai - chat",
+    category: "ai",
   },
   
   onChat: async function () {},
