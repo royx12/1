@@ -14,7 +14,7 @@ module.exports = {
       vi: "",
       en: "Work to earn money, work to earn money."
     },
-    category: "banking",
+    category: "ECONOMY",
     guide: {
       en: "   {pn}"
     }, 
