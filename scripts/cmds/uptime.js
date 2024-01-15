@@ -1,7 +1,7 @@
 module.exports = {
   config: {
-    name: "uptime",
-    aliases: ["up", "upt"],
+    name: "up",
+    aliases: ["upt"],
     version: "1.0",
     author: "XyryllPanget",
     role: 0,
@@ -22,7 +22,7 @@ module.exports = {
     const minutes = Math.floor((uptime / 60) % 60);
     const hours = Math.floor((uptime / (60 * 60)) % 24);
     const days = Math.floor(uptime / (60 * 60 * 24));
-    const uptimeString = `${hours} hour(s) ${minutes} minute(s) ${seconds} seconds`;
+    const uptimeString = `${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} seconds`;
     api.sendMessage(`Hello User, the bot has been running for ${uptimeString}.`, event.threadID);
   }
 };
