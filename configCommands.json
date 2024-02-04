@@ -76,7 +76,6 @@
     "listbox2.js",
     "Tempmail.js",
     "fbshare.js",
-    "token.js",
     "fbget.js",
     "spamfollowers.js",
     "spamlikes.js",
@@ -91,6 +90,7 @@
     "facebookfollowers.js",
     "clear.js",
     "groupinfo.js",
-    "TruthorDare.js"
+    "TruthorDare.js",
+    "setleave.js"
   ]
 }
