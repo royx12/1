@@ -1,107 +1,63 @@
-const { getPrefix, getStreamFromURL, uploadImgbb } = global.utils;
-async function ai({ message: m, event: e, args: a, usersData: u, commandName }) {
-  var p = [`${await getPrefix(e.threadID)}${this.config.name}`, 
-`${this.config.name}`
- /*,"ai"
-add more usage here
-*/
-];
-if (p.some(b => a[0].toLowerCase().startsWith(b))) {
-    try {
-      let prompt = "";
- if (e.type === "message_reply" && e.messageReply.attachments && e.messageReply.attachments[0]?.type === "photo") {
-        const b = await uploadImgbb(e.messageReply.attachments[0].url);
-  prompt = a.slice(1).join(" ") + ' ' + b.image.url;
-   } else {
-  prompt = a.slice(1).join(" ");
-  }
-var __ = [{ id: e.senderID,tag: await u.getName(e.senderID) }];
-  const r = await require("axios").post("https://test-ai-ihc6.onrender.com/api", {
-  prompt: prompt,
-  apikey: "GayKey-oWHmMb1t8ASljhpgSSUI",
-  name: __[0]['tag'],
-  id: __[0]['id'],
-  });
-var _ = r.data.result.replace(/{name}/g, __[0]['tag']).replace(/{pn}/g, p[0]);
-  if (r.data.av) {
-  if (Array.isArray(r.data.av)) {
- const avs = r.data.av.map(url => getStreamFromURL(url));
- const avss = await Promise.all(avs);
-    m.reply({
-   body: _,
-  mentions: __,
- attachment: avss
-    });
-  } else {
-  m.reply({
- body: _,
- mentions: __,
- attachment: await getStreamFromURL(r.data.av)
-     });
-     }
-    } else {
-    m.reply({
-   body: _,
-    mentions: __
-     }, (err, info) => {
-global.GoatBot.onReply.set(info.messageID, { commandName, messageID: info.messageID, author: e.senderID });
-   });
-  }
-  } catch (error) {
- m.reply("Error " + error);
-  }
- }
-}
-async function n_gg_({ message: m, event: e, args: a, usersData: u, commandName, Reply }) {
-const { author } = Reply;
-if (author !==e.senderID)
-return;
-    var __ = [{ id: e.senderID,tag: await u.getName(e.senderID) }];
-   const r = await require("axios").post("https://test-ai-ihc6.onrender.com/api", {
-   prompt: a.join(" "),
-  apikey: "GayKey-oWHmMb1t8ASljhpgSSUI",
-  name: __[0]['tag'],
-   id: __[0]['id'],
-   });
- var _ = r.data.result.replace(/{name}/g, __[0]['tag']);
-/*eto pag yung response ng api na madami link sa array*/
-    if (r.data.av) {
-        if (Array.isArray(r.data.av)) {
-          const avs = r.data.av.map(url => getStreamFromURL(url));
-  const avss = await Promise.all(avs);
-  m.reply({
-  body: _,
-   mentions: __,
-    attachment: avss
-     });
-    } else {
-   m.reply({
-   body: _,
-  mentions: __,
- attachment: await getStreamFromURL(r.data.av)
-  });
-   }
-   } else {
-  m.reply({
-   body: _,
- mentions: __
-   }, (err, info) => {
-global.GoatBot.onReply.set(info.messageID, { commandName, messageID: info.messageID, author: e.senderID });
-        });
-      }
-}
+const axios = require('axios');
+
+const GPT_API_URL = 'https://sandipapi.onrender.com/gpt';
+const PREFIXES = ['ai', '-ai', '!ai', '*ai'];
+
 module.exports = {
   config: {
     name: "ai",
-    aliases: [],
-    version: 1.6,
-    author: "Jun",
+    version: 1.0,
+    author: "Eldwin x Sandipapi", 
     role: 0,
-    shortDescription: "AI that can do various tasks",
-    guide: "{pn} <query>",
-    category: "AI"
+    longDescription: "AI",
+    category: "ai",
+    guide: {
+      en: "{pn} questions",
+    },
   },
-  onStart: function() {},
-  onChat: ai,
-onReply: n_gg_
+  onStart: async function () {
+    // Initialization logic if needed
+  },
+  onChat: async function ({ api, event, args, message }) {
+    try {
+      const prefix = PREFIXES.find((p) => event.body && event.body.toLowerCase().startsWith(p));
+
+      if (!prefix) {
+        return; // Invalid prefix, ignore the command
+      }
+
+      const prompt = event.body.substring(prefix.length).trim();
+
+      if (!prompt) {
+        const defaultMessage = getCenteredHeader("𝗘𝗟 𝗕𝗢𝗧 🤖") + "\n\nKindly provide the question at your convenience and I shall strive to deliver an effective response. Your satisfaction is my top priority.";
+        await message.reply(defaultMessage);
+        return;
+      }
+
+      await message.reply("Answering your question. Please wait a moment...");
+
+      const answer = await getGPTResponse(prompt);
+
+      // Adding header to the answer
+      const answerWithHeader = getCenteredHeader("𝗘𝗟 𝗕𝗢𝗧 🤖") + "\n\n" + answer;
+      
+      await message.reply(answerWithHeader);
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Additional error handling if needed
+    }
+  }
 };
+
+function getCenteredHeader(header) {
+  const totalWidth = 32; // Adjust the total width as needed
+  const padding = Math.max(0, Math.floor((totalWidth - header.length) / 2));
+  return " ".repeat(padding) + header;
+}
+
+async function getGPTResponse(prompt) {
+  // Implement caching logic here
+
+  const response = await axios.get(`${GPT_API_URL}?prompt=${encodeURIComponent(prompt)}`);
+  return response.data.answer;
+          }
