@@ -216,7 +216,7 @@ config: {
      return api.sendMessage("I Am dev's, An AI Based Messenger Chatbot.", threadID, messageID);
    };
 
-  if (event.body.indexOf("Bot") == 0 || (event.body.toLowerCase() == "bot") || (event.body.indexOf("বট") == 0)) {
+  if (event.body.indexOf("babu") == 0 || (event.body.toLowerCase() == "bot") || (event.body.indexOf("bot") == 0)) {
     var msg = {
       body: ` ${rand}
 
