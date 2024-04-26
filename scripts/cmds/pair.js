@@ -1,47 +1,55 @@
-const { getStreamFromURL } = global.utils;
+const axios = require ("axios");
+const fs = require ("fs-extra");
+
 module.exports = {
   config: {
     name: "pair",
-    aliases: ['couple', 'p'],
+    aliases: [],
     version: "1.0",
-    author: "AceGerome",
-    shortDescription: {
-      en: "pair with random people",
-    },
+    author: "Rishad",
+    countDown: 5,
+    role: 0,
+    shortDescription: " ",
+    longDescription: "",
     category: "fun",
-    guide: "{p}pair — random-female"
+    guide: "{pn}"
   },
 
-  onStart: async function({ event, threadsData, message, usersData }) {
-    const uidI = event.senderID;
-    const avatarUrl1 = await usersData.getAvatarUrl(uidI);
-    const threadData = await threadsData.get(event.threadID);
-    const members = threadData.members.filter(member => member.inGroup);
-    const senderGender = threadData.members.find(member => member.userID === uidI)?.gender;
+  onStart: async function({ api, event, threadsData, usersData }) {
 
-    if (members.length === 0) return message.reply('There are no members in the group.');
+    const { threadID, messageID, senderID } = event;
+    const { participantIDs } = await api.getThreadInfo(threadID);
+    var tle = Math.floor(Math.random() * 101);
+    var namee = (await usersData.get(senderID)).name
+    const botID = api.getCurrentUserID();
+    const listUserID = participantIDs.filter(ID => ID != botID && ID != senderID);
+    var id = listUserID[Math.floor(Math.random() * listUserID.length)];
+    var name = (await usersData.get(id)).name
+    var arraytag = [];
+    arraytag.push({ id: senderID, tag: namee });
+    arraytag.push({ id: id, tag: name });
 
-    const eligibleMembers = members.filter(member => member.gender !== senderGender);
-    if (eligibleMembers.length === 0) return message.reply('There are no male/female members in the group.');
+    let Avatar = (await axios.get(`https://graph.facebook.com/${senderID}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: "arraybuffer" })).data;
+    fs.writeFileSync(__dirname + "/cache/avt.png", Buffer.from(Avatar, "utf-8"));
 
-    const randomIndex = Math.floor(Math.random() * eligibleMembers.length);
-    const randomMember = eligibleMembers[randomIndex];
-    const name1 = await usersData.getName(`${randomMember.userID}`);
-    const name2 = await usersData.getName(`${randomMember.userID}`);
-    const avatarUrl2 = await usersData.getAvatarUrl(`${randomMember.userID}`);
-    const randomNumber1 = Math.floor(Math.random() * 36) + 65;
-    const randomNumber2 = Math.floor(Math.random() * 36) + 65;
+    let gifLove = (await axios.get(`https://i.ibb.co/wC2JJBb/trai-tim-lap-lanh.gif`, { responseType: "arraybuffer" })).data;
+    fs.writeFileSync(__dirname + "/cache/giflove.png", Buffer.from(gifLove, "utf-8"));
 
-    message.reply({
-      body: ` ${name1} ❤️ ${name2}
-        Love percentage: "${randomNumber1}% 🤭"
-        Compatibility ratio: "${randomNumber2}% 💕"
-        
-        Congratulations 💝`,
-      attachment: [
-        await getStreamFromURL(`${avatarUrl1}`),
-        await getStreamFromURL(`${avatarUrl2}`)
-      ]
-    });
+    let Avatar2 = (await axios.get(`https://graph.facebook.com/${id}/picture?width=512&height=512&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`, { responseType: "arraybuffer" })).data;
+    fs.writeFileSync(__dirname + "/cache/avt2.png", Buffer.from(Avatar2, "utf-8"));
+
+    var imglove = [];
+
+    imglove.push(fs.createReadStream(__dirname + "/cache/avt.png"));
+    imglove.push(fs.createReadStream(__dirname + "/cache/giflove.png"));
+    imglove.push(fs.createReadStream(__dirname + "/cache/avt2.png"));
+
+    var msg = {
+      body: `🥰Successful pairing!💌Wish you two hundred years of happiness💕Double ratio: ${tle}% ${namee} 💓 ${name}`,
+      mentions: arraytag,
+      attachment: imglove
+    };
+
+    return api.sendMessage(msg, event.threadID, event.messageID);
   }
 };
